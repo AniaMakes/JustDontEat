@@ -1,5 +1,3 @@
 # Just Don't Eat
 
-## README.md
-
-When finished, include a README.md in your repo. This should explain what the project is, how to run it and how to use it. Someone who is not familiar with the project should be able to look at it and understand what it is and what to do with it.
+Save your money and time with **JustDontEat** app - get the list of places to be avoided. Share worst places with friends to make them aware, add new bad reviews - let everyone know how terrible it is
