@@ -1,6 +1,11 @@
 import React from 'react';
+
+import Search from './Search';
+// import RestaurantCard from './RestaurantCard';
+
 // import Search from './Search';
 import RestaurantCard from './RestaurantCard';
+
 
 class App extends React.Component {
   constructor(){
@@ -10,7 +15,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        {/*<Search />*/}
+        <Search />
         <section className='restaurants'>
           <h2> Results </h2>
           <ul className='restaurants-list'>
