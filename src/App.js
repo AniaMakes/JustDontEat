@@ -1,6 +1,6 @@
 import React from 'react';
 // import Search from './Search';
-// import RestaurantCard from './RestaurantCard';
+import RestaurantCard from './RestaurantCard';
 
 class App extends React.Component {
   constructor(){
@@ -15,7 +15,7 @@ class App extends React.Component {
           <h2> Results </h2>
           <ul className='restaurants-list'>
             Top worst restaurants in your area
-            {/*<RestaurantCard />*/}
+            <RestaurantCard />
 
           </ul>
         </section>
