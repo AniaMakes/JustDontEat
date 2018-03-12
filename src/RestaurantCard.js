@@ -8,11 +8,20 @@ class RestaurantCard extends React.Component {
 	render() {
 		return (
 			<article className='restaurant-card'>
-				<img src='http://via.placeholder.com/150x150' />
-				<h3 className='restaurant-name'> Name </h3>
-				<p className='restaurant-rating'> 2 </p>
-				<p className='number-of-reviews'> 6 </p>
-				<p className='start-of-review'> "The experience was so terrible I barely survived"</p>
+				<img className='restaurant-image'
+					src='http://via.placeholder.com/150x150'
+				/>
+				<div className = 'card-info'>
+					<h3 className='restaurant-name'> Restaurant Name </h3>
+					<div className='card-info-details'>
+						<div className ='rating-and-reviews'>
+							<p className='restaurant-rating'> Rating: 2</p>
+							<p className='number-of-reviews'> 6 reviews </p>
+						</div>
+						<p className='start-of-review'> "The experience was so terrible I barely survived" </p>
+					</div>
+				</div>
+				<button> Read more </button>
 			</article>	
 		)
 	}
