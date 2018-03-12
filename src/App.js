@@ -5,6 +5,7 @@ import Search from './Search';
 
 // import Search from './Search';
 import RestaurantCard from './RestaurantCard';
+import RestaurantDetails from './RestaurantDetails';
 
 
 class App extends React.Component {

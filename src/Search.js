@@ -28,7 +28,7 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div className='header'>
-				<p className="logo">JDE</p>
+				<h1 className="logo">JustDontEat</h1>
 				<form 
 					className='search-form'
 					onSubmit={this.handleSubmit}
