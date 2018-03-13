@@ -16,16 +16,18 @@ class App extends React.Component {
       restaurantsShown: false,
       data: [],
       submitKeyword: '',
-      submitLocation: ''
+      submitLocationLat: '',
+      submitLocationLng: ''
     };
 
     this.saveInputQueries = this.saveInputQueries.bind(this);
   }
 
-  saveInputQueries(inputKeywordQuery, inputLocationQuery) {
+  saveInputQueries(inputKeywordQuery, lat, lng) {
     this.setState({
-      submitKeyword: inputLocationQuery,
-      submitLocation: inputLocationQuery
+      submitKeyword: inputKeywordQuery,
+      submitLocationLat: lat, 
+      submitLocationLng: lng
     });
   }
 
