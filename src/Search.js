@@ -6,24 +6,44 @@ class Search extends React.Component {
 		super(props);
 
 		this.state = {
-			value: ''
-		}
+			inputKeyword: '',
+			inputLocation: '',
+			validLocation: 'blank'
+		};
 
-		this.handleChange = this.handleChange.bind(this);
+		this.handleKeywordChange = this.handleKeywordChange.bind(this);
+		this.handleLocationChange = this.handleLocationChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
+	handleKeywordChange(event) {
 		this.setState({
-			value: event.target.value
-		})
+			inputKeyword: event.target.value
+		});
+	}
+
+	handleLocationChange(event) {
+		this.setState({
+			inputLocation: event.target.value,
+			validLocation:true
+		});
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const searchQuery = this.state.value;
-		this.props.receiver(searchQuery);
-	} 
+		if(this.state.inputLocation !== '') {
+			this.setState({
+				validLocation: true
+			});
+			const inputKeywordQuery = this.state.inputKeyword;
+			const inputLocationQuery = this.state.inputLocation;
+			this.props.receiver(inputKeywordQuery, inputLocationQuery);
+		} else {
+			this.setState({
+				validLocation: false
+			});
+		}
+	}
 
 	render() {
 		return (
@@ -33,20 +53,48 @@ class Search extends React.Component {
 					className='search-form'
 					onSubmit={this.handleSubmit}
 				>
+
+{/*=========================================*/}
+					{/*Keyword search input*/}
+{/*=========================================*/}
 					<input 
 						type="text" 
-						placeholder='Search'
-						onChange={this.handleChange}
-						value={this.state.value}
+						placeholder='Search any food'
+						onChange={this.handleKeywordChange}
+						value={this.state.inputKeyword}
 						id='search-input'
 						className='search-input'
 						name='search-input'
 					/>
+
+{/*=========================================*/}
+					{/*Location search input*/}
+{/*=========================================*/}
+					<input 
+						type="text" 
+						placeholder='Type Location'
+						onChange={this.handleLocationChange}
+						value={this.state.inputLocation}
+						id='search-input'
+						className='search-input'
+						name='search-input'
+					/>
+
+{/*=========================================*/}
+	{/*Hidden error message for validation*/}
+{/*=========================================*/}
+
+					<p 
+
+						className={this.state.validLocation !== false ? 'hidden' : 'validation-error'}
+					>
+						Location field can't be empty
+
+					</p>
 					<button className='submit-btn' type='submit'>►</button>
-					<a href="#"><img src="./assets/images/placeholder.png" alt=""/></a>
 				</form>
 			</div>
-		)
+		);
 	}
 }
 
