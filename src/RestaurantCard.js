@@ -1,45 +1,28 @@
 import React from 'react';
 
 class RestaurantCard extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.clickHandler = this.clickHandler.bind(this);
-	}
-
-	clickHandler(event){
-		event.preventDefault();
-		this.props.onClick(this.props.restaurant.placeid);
+	constructor() {
+		super();
 	}
 
 	render() {
-
-		//placeid as key, as this needed for detailed search
-		const {imageURL, restaurantName, rating, address} = this.props;
-		// image, restaurant name, rating, address, onClick handle on a button
-
-		//default image if no incoming photo
-
 		return (
-
 			<article className='restaurant-card'>
 				<img className='restaurant-image'
 					src='http://via.placeholder.com/150x150'
 				/>
 				<div className = 'card-info'>
-					<h3 className='restaurant-name'>
-						{restaurantName}</h3>
-					<div className='restaurant-address'>
-						{address}
-					</div>
+					<h3 className='restaurant-name'> Restaurant Name </h3>
 					<div className='card-info-details'>
 						<div className ='rating-and-reviews'>
-							<p className='restaurant-rating'> Rating: {rating}</p>
+							<p className='restaurant-rating'> Rating: 2</p>
+							<p className='number-of-reviews'> 6 reviews </p>
+						</div>
+						<p className='start-of-review'> "The experience was so terrible I barely survived" </p>
 					</div>
-					</div>
-					<button onClick={this.clickHandler}> Read more </button>
-					</div>
-			</article>
+				</div>
+				<button> Read more </button>
+			</article>	
 		)
 	}
 }
