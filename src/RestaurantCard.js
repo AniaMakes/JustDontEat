@@ -40,7 +40,7 @@ class RestaurantCard extends React.Component {
 					<button onClick={this.clickHandler}> Read more </button>
 					</div>
 			</article>
-		)
+		);
 	}
 }
 
