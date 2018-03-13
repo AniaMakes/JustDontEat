@@ -9,8 +9,15 @@ import RestaurantDetails from './RestaurantDetails';
 
 
 class App extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
+    this.state = {
+      restaurantsShown: false,
+      data: [],
+      submitKeyword: '',
+      submitLocation: ''
+    };
   }
 
   render(){
