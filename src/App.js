@@ -1,4 +1,5 @@
 import React from 'react';
+import ExpFetch from './ExpFetch';
 // import Search from './Search';
 // import RestaurantCard from './RestaurantCard';
 
@@ -16,6 +17,7 @@ class App extends React.Component {
           <ul className='restaurants-list'>
             Top worst restaurants in your area
             {/*<RestaurantCard />*/}
+            <ExpFetch/>
 
           </ul>
         </section>
