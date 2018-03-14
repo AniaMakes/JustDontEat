@@ -1,0 +1,24 @@
+.restaurant-card {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid grey;
+}
+
+.card-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.rating-and-reviews {
+	display: flex;
+}
+
+
+
+
+
+
+
+.hidden {
+	display: none;
+}

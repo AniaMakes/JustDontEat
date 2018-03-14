@@ -1,24 +1,42 @@
 import React from 'react';
-import ExpFetch from './ExpFetch';
-// import Search from './Search';
-// import RestaurantCard from './RestaurantCard';
+
+import Search from './Search';
+import RestaurantCard from './RestaurantCard';
+import RestaurantDetails from './RestaurantDetails';
+
 
 class App extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
+    this.state = {
+      restaurantsShown: false,
+      data: [],
+      submitKeyword: '',
+      submitLocationLat: '',
+      submitLocationLng: ''
+    };
+
+    this.saveInputQueries = this.saveInputQueries.bind(this);
+  }
+
+  saveInputQueries(inputKeywordQuery, lat, lng) {
+    this.setState({
+      submitKeyword: inputKeywordQuery,
+      submitLocationLat: lat, 
+      submitLocationLng: lng
+    });
   }
 
   render(){
     return (
       <div>
-        {/*<Search />*/}
+        <Search receiver={this.saveInputQueries} />
         <section className='restaurants'>
           <h2> Results </h2>
           <ul className='restaurants-list'>
             Top worst restaurants in your area
-            {/*<RestaurantCard />*/}
-            <ExpFetch/>
-
+            <RestaurantCard />
           </ul>
         </section>
       </div>
