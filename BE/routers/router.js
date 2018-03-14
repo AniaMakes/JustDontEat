@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {getPlaces,getPlaceDetails} = require('../api.js')
 
-router.get('/getPlaces',getPlaces)
-router.get('/getPlacesDetails',getPlaceDetails)
+router.get('/get-places',getPlaces)
+router.get('/get-places-details',getPlaceDetails)
 
 module.exports=router;
