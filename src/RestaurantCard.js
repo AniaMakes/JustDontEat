@@ -7,7 +7,7 @@ class RestaurantCard extends React.Component {
 		this.clickHandler = this.clickHandler.bind(this);
 	}
 
-	clickHandler(event){
+	clickHandler(event) {
 		event.preventDefault();
 		this.props.onClick(this.props.restaurant.placeid);
 	}
@@ -15,7 +15,7 @@ class RestaurantCard extends React.Component {
 	render() {
 
 		//placeid as key, as this needed for detailed search
-		const {imageURL, restaurantName, rating, address} = this.props;
+		const { photoURL, restaurantName, rating } = this.props;
 		// image, restaurant name, rating, address, onClick handle on a button
 
 		//default image if no incoming photo
@@ -23,22 +23,20 @@ class RestaurantCard extends React.Component {
 		return (
 
 			<article className='restaurant-card'>
-				<img className='restaurant-image'
-					src='http://via.placeholder.com/150x150'
-				/>
-				<div className = 'card-info'>
-					<h3 className='restaurant-name'>
-						{restaurantName}</h3>
-					<div className='restaurant-address'>
-						{address}
+				<div className='card-header'>
+					<div className='image-container' >
+						<img className='restaurant-image'
+							src={photoURL}
+						/>
 					</div>
-					<div className='card-info-details'>
-						<div className ='rating-and-reviews'>
-							<p className='restaurant-rating'> Rating: {rating}</p>
+					<div className='card-info'>
+						<h3 className='restaurant-name'>
+							{restaurantName}
+						</h3>
+						<p className='restaurant-rating'> Rating: <b className='rating-number'>{rating}</b></p>
 					</div>
-					</div>
-					<button onClick={this.clickHandler}> Read more </button>
-					</div>
+				</div>
+				<button onClick={this.clickHandler}> Read more </button>
 			</article>
 		);
 	}

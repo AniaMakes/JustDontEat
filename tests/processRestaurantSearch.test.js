@@ -1,4 +1,4 @@
-const processRestaurantSearch = require("../lib/processRestaurantSearch");
+const processRestaurantSearch = require("../BE/lib/processRestaurantSearch");
 
 const searchDummyData = require("./dummyData/restaurantSearch.js");
 
@@ -17,7 +17,7 @@ describe("Process Restaurant Search data coming from the API", function(){
       "name" : "Dragon Boat Chinese Restaurant",
       "place_id" : "ChIJsfCA-DmuEmsRM1QTsmdL1Uo",
       "rating" : 2.8,
-      "photoURL" : `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoRef}&sensor=false&maxheight=MAX_HEIGHT&maxwidth=MAX_WIDTH&key=ourAPIkey`
+      "photoURL" : `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoRef}&maxheight=400&key=ourAPIkey`
     };
 
     expect(run[0]).toEqual(expected);

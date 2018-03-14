@@ -1,10 +1,11 @@
-const app = require('express')();
+const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./routers/router');
-const cors = require('cors');
 
+const app = express();
 app.use(bodyParser.json());
 app.use('/api', router);
-app.use(cors());
+app.use(express.static('public'))
+
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
 module.exports = app

@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const {getPlaces,getPlaceDetails, getPhoto, getGeolocation} = require('../api.js')
+const {getPlaces,getPlaceDetails, getGeolocation} = require('../api.js')
 
-router.get('/getPlaces',getPlaces)
-router.get('/getPlacesDetails',getPlaceDetails)
-router.get('/get-photo', getPhoto)
 router.get('/get-geolocation/:placeName', getGeolocation)
+
+router.get('/get-places',getPlaces)
+router.get('/get-place-details',getPlaceDetails)
+router.get('/',(req,res)=>{
+    res.status.sendFile('index.html')
+})
 
 module.exports=router;
