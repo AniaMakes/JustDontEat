@@ -1,6 +1,9 @@
 import React from 'react';
 
 class RestaurantDetails extends React.Component {
+	constructor(props){
+		super(props);
+	};
 	render() {
 		const {restaurant,onClick} = this.props
 		return (
