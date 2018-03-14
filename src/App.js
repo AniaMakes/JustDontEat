@@ -12,24 +12,53 @@ class App extends React.Component {
     this.state = {
       restaurantsShown: false,
       data: [],
+      view: 'basic',
       submitKeyword: '',
       submitLocationLat: '',
-      submitLocationLng: ''
+      submitLocationLng: '',
     };
 
     this.saveInputQueries = this.saveInputQueries.bind(this);
+    this.fetchDetails = this.fetchDetails.bind(this);
   }
 
   saveInputQueries(inputKeywordQuery, lat, lng) {
     this.setState({
       submitKeyword: inputKeywordQuery,
-      submitLocationLat: lat, 
+      submitLocationLat: lat,
       submitLocationLng: lng
     });
   }
 
+  fetchDetails(details){
+    console.log("fetch details");
+    console.log(details);
+    const processRestaurantDetails = require("../lib/processRestaurantDetails");
+    const detailsDummyData = require("../tests/dummyData/restaurantDetails");
+    const detailsData = processRestaurantDetails(detailsDummyData.default);
+
+
+    const {name,rating,address,reviews,photoURL} = this.props;
+
+    this.setState(view : "details");
+
+
+    let detailsJSX = <RestaurantDetails
+      name={detailsData.name}
+      rating={detailsData.rating}
+      address={detailsData.address}
+      reviews={detailsData.reviews}
+      photoURL={details[1]}
+    />
+
+
+    this.setState(view : "details");
+
+
+  }
+
   render(){
-    console.log(this.state);
+    if (this.state.view === 'basic'){
 
     // test
     const processRestaurantSearch = require("../lib/processRestaurantSearch");
@@ -45,10 +74,12 @@ class App extends React.Component {
       return <RestaurantCard
               restaurantName={item.name}
               key={item.place_id}
+              restaurantIdReceiver={this.fetchDetails}
+              restaurantId = {item.place_id}
               rating={item.rating}
               photoURL={item.photoURL}
             />;
-    });
+    }, this);
 
     return (
       <div>
@@ -64,6 +95,12 @@ class App extends React.Component {
       </div>
     );
   }
+ else {
+   return (
+     {this.state.restaurantDetailJSX}
+   );
+ }
+}
 }
 
 export default App;

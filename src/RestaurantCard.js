@@ -9,7 +9,7 @@ class RestaurantCard extends React.Component {
 
 	clickHandler(event){
 		event.preventDefault();
-		this.props.onClick(this.props.restaurant.placeid);
+		this.props.restaurantIdReceiver([this.props.restaurantId, this.props.photoURL]);
 	}
 
 	render() {
@@ -33,7 +33,7 @@ class RestaurantCard extends React.Component {
 					</div>
 					<div className='card-info'>
 					<h3 className='restaurant-name'>
-						{restaurantName} 
+						{restaurantName}
 					</h3>
 					<p className='restaurant-rating'> Rating: <b className='rating-number'>{rating}</b></p>
 					</div>
