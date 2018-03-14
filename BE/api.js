@@ -62,12 +62,6 @@ function getPlaceDetails(req, res) {
     })
 }
 
-
-
-function getPhoto(id) {
-
-}
-
 function getGeolocation(searchTerm) {
 
 }
