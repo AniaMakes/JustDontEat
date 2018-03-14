@@ -7,7 +7,7 @@ class RestaurantCard extends React.Component {
 		this.clickHandler = this.clickHandler.bind(this);
 	}
 
-	clickHandler(event){
+	clickHandler(event) {
 		event.preventDefault();
 		this.props.onClick(this.props.restaurant.placeid);
 	}
@@ -15,7 +15,7 @@ class RestaurantCard extends React.Component {
 	render() {
 
 		//placeid as key, as this needed for detailed search
-		const {photoURL, restaurantName, rating} = this.props;
+		const { photoURL, restaurantName, rating } = this.props;
 		// image, restaurant name, rating, address, onClick handle on a button
 
 		//default image if no incoming photo
@@ -24,18 +24,16 @@ class RestaurantCard extends React.Component {
 
 			<article className='restaurant-card'>
 				<div className='card-header'>
-					<div className='image-container' width='100px'
-						height='100px'>
-					<img className='restaurant-image'
-						src={photoURL}
-						
-					/>
+					<div className='image-container' >
+						<img className='restaurant-image'
+							src={photoURL}
+						/>
 					</div>
 					<div className='card-info'>
-					<h3 className='restaurant-name'>
-						{restaurantName} 
-					</h3>
-					<p className='restaurant-rating'> Rating: <b className='rating-number'>{rating}</b></p>
+						<h3 className='restaurant-name'>
+							{restaurantName}
+						</h3>
+						<p className='restaurant-rating'> Rating: <b className='rating-number'>{rating}</b></p>
 					</div>
 				</div>
 				<button onClick={this.clickHandler}> Read more </button>
