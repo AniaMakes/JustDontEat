@@ -1,22 +1,22 @@
 import React from 'react';
 
 class RestaurantDetails extends React.Component {
-	constructor() {
-		super();
-	}
-
+	constructor(props){
+		super(props);
+	};
 	render() {
+		const {restaurant,onClick} = this.props
 		return (
-			<div>
-				<h3> Restaurant name </h3>
-				<div className='restaurant-contacts'>
-					<p> Adress </p>
-					<p> Phone </p>
+			<div className='restaurant-details'>
+				<div className='restaurant-details-image'>
+					<img src={restaurant.Image} alt={'Image of food'}/>
 				</div>
-				<ul> Reviews: 
-					<li> bad </li>
-					<li> very bad </li>
-				</ul>
+				<div className='restaurant-details-name'>Restaurant name:{restaurant.Name}</div>
+				<div className='restaurant-details-rating'>Restaurant rating:{restaurant.Rating}</div>
+				<div className='restaurant-details-reviews'>Reviews:{restaurant.Reviews}>
+			  </div>
+			  <button onClick={onClick}>X</button>
+//removes the details page - state change occurs in app
 			</div>
 		);
 	}
