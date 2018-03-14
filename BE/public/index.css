@@ -96,6 +96,13 @@ body {
 	font-size: 1rem;
 }
 
+.restaurant-image{
+	width:100px;
+	height:100px;
+	object-fit: cover;
+}
+
+
 
 
 

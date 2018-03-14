@@ -24,11 +24,11 @@ class RestaurantCard extends React.Component {
 
 			<article className='restaurant-card'>
 				<div className='card-header'>
-					<div className='image-container'>
+					<div className='image-container' width='100px'
+						height='100px'>
 					<img className='restaurant-image'
 						src={photoURL}
-						width='100px'
-						height='100px'
+						
 					/>
 					</div>
 					<div className='card-info'>

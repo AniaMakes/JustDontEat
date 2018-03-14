@@ -16,7 +16,7 @@ function getPlaces(req, res) {
     //creating an empty array to fill
     fillArr=[]
     //defining how many results we would like to fetch minimum
-    minLength=50;
+    minLength=10;
     
     //compiling fetch url
     const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant&keyword=${keyword}&key=${googlePlacesApiKey}`;
@@ -24,7 +24,13 @@ function getPlaces(req, res) {
         return response.json()
     }).then(data => {
         fillArr=data.results
-        if(data.next_page_token) getNextPage(data.next_page_token,fillArr,minLength,res) 
+        if(data.next_page_token && fillArr.length<minLength) {
+            getNextPage(data.next_page_token,fillArr,minLength,res) 
+        }else{
+            //Ania's sorting and striping function should go here before send.
+            fillArr= processRestaurantSearch(fillArr,googlePlacesApiKey).sort((a,b)=> a.rating-b.rating);
+            res.status(200).json({results:fillArr});
+        } 
     }).catch(err => { 
         console.log(err)  
     })
