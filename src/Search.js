@@ -1,8 +1,8 @@
 import React from 'react';
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey("AIzaSyBlPkgEc3taqeXdU0X8BuJsx8VElganCKI");
+// Geocode.setApiKey("AIzaSyBlPkgEc3taqeXdU0X8BuJsx8VElganCKI");
 
 class Search extends React.Component {
 	constructor(props) {
@@ -39,14 +39,18 @@ class Search extends React.Component {
 				validLocation: true
 			});
 			const inputKeywordQuery = this.state.inputKeyword;
-			Geocode.fromAddress(this.state.inputLocation)
-				.then(response => {
-				    const { lat, lng } = response.results[0].geometry.location;
-				    this.props.receiver(inputKeywordQuery, lat, lng);
-				  },
-				  error => {
-				    console.error(error);
-				  });	
+			// Geocode.fromAddress(this.state.inputLocation)
+			// 	.then(response => {
+			// 	    const { lat, lng } = response.results[0].geometry.location;
+			// 	    this.props.receiver(inputKeywordQuery, lat, lng);
+			// 	  },
+			// 	  error => {
+			// 	    console.error(error);
+			// 	  });
+			fetch('/api/get-geolocation/' + this.state.inputLocation)
+				.then(response => response.json())
+				.then(data => console.log(data))
+				.catch(err => console.log(err));
 		} else {
 			this.setState({
 				validLocation: false
@@ -55,6 +59,7 @@ class Search extends React.Component {
 		
 	}
 	render() {
+		// console.log(this.state.inputLocation);
 		return (
 			<div className='header'>
 				<h1 className="logo">JustDontEat</h1>
