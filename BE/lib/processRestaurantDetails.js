@@ -1,5 +1,4 @@
-function processRestaurantDetails(incomingData){
-  const details = incomingData.result;
+function processRestaurantDetails(details){
 
   let outputRestaurantDetailsObject = {};
 

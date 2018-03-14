@@ -1,5 +1,6 @@
 const { googlePlacesApiKey, googlePlacesApiURL } = process.env
-
+const processRestaurantSearch = require('./lib/processRestaurantSearch');
+const processRestaurantDetails = require('./lib/processRestaurantDetails');
 const fetch = require('node-fetch');
 //upate functions to get parameters from queries and send json back also catch errors
 
@@ -40,6 +41,7 @@ function getNextPage(nextPageToken,fillArr,minLength,res) {
                 getNextPage(data.next_page_token,fillArr,minLength,res)
             }else{
                 //Ania's sorting and striping function should go here before send.
+                fillArr= processRestaurantSearch(fillArr,googlePlacesApiKey).sort((a,b)=> a.rating-b.rating);
                 res.status(200).json({results:fillArr});
             } 
         }).catch(err=> console.log(err))
