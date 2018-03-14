@@ -2,16 +2,6 @@
 const {googlePlacesApiKey, googleMapsApiKey, googlePlacesApiURL} = process.env
 const fetch = require('node-fetch');
 
-// const NodeGeocoder = require('node-geocoder');
-// const options = {
-//   provider: 'google',
- 
-//   // Optional depending on the providers
-//   httpAdapter: 'https', // Default
-//   apiKey: googleMapsApiKey, // for Mapquest, OpenCage, Google Premier
-//   formatter: null         // 'gpx', 'string', ...
-// };
-// const geocoder = NodeGeocoder(options);
 
 
 const { googlePlacesApiKey, googlePlacesApiURL } = process.env
@@ -19,10 +9,6 @@ const processRestaurantSearch = require('./lib/processRestaurantSearch');
 const processRestaurantDetails = require('./lib/processRestaurantDetails');
 const fetch = require('node-fetch');
 
-//upate functions to get parameters from queries and send json back also catch errors
-
-
-// try url http://localhost:3000/api/get-places?keyword=chinese&lat=-33.8670522&long=151.1957362
 function getPlaces(req, res) {
     // getting queries from request
     const keyword = req.query.keyword;
@@ -44,7 +30,6 @@ function getPlaces(req, res) {
         if(data.next_page_token && fillArr.length<minLength) {
             getNextPage(data.next_page_token,fillArr,minLength,res) 
         }else{
-            //Ania's sorting and striping function should go here before send.
             fillArr= processRestaurantSearch(fillArr,googlePlacesApiKey).sort((a,b)=> a.rating-b.rating);
             res.status(200).json({results:fillArr});
         } 
@@ -63,7 +48,6 @@ function getNextPage(nextPageToken,fillArr,minLength,res) {
             if(data.next_page_token && fillArr.length<minLength) {
                 getNextPage(data.next_page_token,fillArr,minLength,res)
             }else{
-                //Ania's sorting and striping function should go here before send.
                 fillArr= processRestaurantSearch(fillArr,googlePlacesApiKey).sort((a,b)=> a.rating-b.rating);
                 res.status(200).json({results:fillArr});
             } 
@@ -78,7 +62,7 @@ function getPlaceDetails(req, res) {
     fetch(url).then((response) => {
         return response.json()
     }).then(data => {
-        //details stripping function should go here
+        data = processRestaurantDetails(data)
         res.status(200).json(data)
     }).catch(err => {
         console.log(err)
@@ -86,15 +70,12 @@ function getPlaceDetails(req, res) {
 }
 
 function getGeolocation(req, res){
-// console.log(req.params.placeName)
-// console.log(googlePlacesApiKey)
 	//*************************************************//
 	// Using geocoder to get a coordinates via Promise //
 	//*************************************************//
 	fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.params.placeName}&sensor=false&key=${googlePlacesApiKey}`)
 	  .then(response => response.json())
 	  .then(response => {
-	    // console.log(response[0].latitude, response[0].longitude);
 	    res.status(200).json(response.results[0].geometry.location);
 	  }).catch(function(err) {
 	    console.log(err);

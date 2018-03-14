@@ -42,18 +42,7 @@ class App extends React.Component {
   }
 
   render(){
-    // console.log(this.state);
 
-    // test
-    // const processRestaurantSearch = require("../lib/processRestaurantSearch");
-    // const searchDummyData = require("../tests/dummyData/restaurantSearch.js");
-
-    // console.log(searchDummyData);
-    // const workingData = processRestaurantSearch(searchDummyData.default,"AIzaSyBlPkgEc3taqeXdU0X8BuJsx8VElganCKI");
-
-    // console.log(workingData);
-
-    //create a card for each object in array
     const createRestaurantCards=()=>{
       return this.state.restaurantsShown ? this.state.data.map(function(item) {
         return <RestaurantCard
