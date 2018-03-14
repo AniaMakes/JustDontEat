@@ -1,5 +1,6 @@
 const {googlePlacesApiKey ,googlePlacesApiURL} = process.env
 
+const fetch = require('node-fetch');
 //upate functions to get parameters from queries and send json back also catch errors
 
 function getPlaces(req,res){
@@ -12,11 +13,15 @@ return fetch(url)
 
 function getPlaceDetails(req,res){
     const placeId = req.query.placeId
+    console.log(placeId);
     const url= `${googlePlacesApiURL}/details/json?placeid=${placeId}&key=${googlePlacesApiKey}`;
-    fetch(url).then((response)=>{
+    console.log(url)
+    fetch(`${googlePlacesApiURL}/details/json?placeid=${placeId}&key=${googlePlacesApiKey}`).then((response)=>{
         return response.json()
     }).then(data=>{
-        console.log(data)
+        res.status(200).json(data)
+    }).catch(err=>{
+        console.log(err)
     })
 }
 
