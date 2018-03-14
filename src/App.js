@@ -1,9 +1,6 @@
 import React from 'react';
 
 import Search from './Search';
-// import RestaurantCard from './RestaurantCard';
-
-// import Search from './Search';
 import RestaurantCard from './RestaurantCard';
 import RestaurantDetails from './RestaurantDetails';
 
