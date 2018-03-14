@@ -1,10 +1,5 @@
 
 const {googlePlacesApiKey, googleMapsApiKey, googlePlacesApiURL} = process.env
-const fetch = require('node-fetch');
-
-
-
-const { googlePlacesApiKey, googlePlacesApiURL } = process.env
 const processRestaurantSearch = require('./lib/processRestaurantSearch');
 const processRestaurantDetails = require('./lib/processRestaurantDetails');
 const fetch = require('node-fetch');
