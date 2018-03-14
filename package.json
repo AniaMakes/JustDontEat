@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "start": "react-scripts start"
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
@@ -18,9 +17,13 @@
     ]
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "webpack-dev-server": "^3.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
