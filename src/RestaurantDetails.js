@@ -5,7 +5,7 @@ class RestaurantDetails extends React.Component {
 		super(props);
 	};
 	render() {
-		const {restaurant,onClick} = this.props
+		const {restaurant,onClick} = this.props;
 		return (
 			<div className='restaurant-details'>
 				<div className='restaurant-details-image'>
@@ -16,8 +16,8 @@ class RestaurantDetails extends React.Component {
 				<div className='restaurant-details-reviews'>Reviews:{restaurant.Reviews}>
 			  </div>
 			  <button onClick={onClick}>X</button>
-//removes the details page - state change occurs in app
-			</div>
+{/*//removes the details page - state change occurs in app
+*/}			</div>
 		);
 	}
 }

@@ -57,7 +57,8 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div className='header'>
-				<h1 className="logo">JustDontEat</h1>
+
+				<h1 className="logo">Just<br/>Dont<br/>Eat</h1>
 				<form 
 					className='search-form'
 					onSubmit={this.handleSubmit}
@@ -66,41 +67,40 @@ class Search extends React.Component {
 {/*=========================================*/}
 					{/*Keyword search input*/}
 {/*=========================================*/}
-					<input 
-						type="text" 
-						placeholder='Search any food'
-						onChange={this.handleKeywordChange}
-						value={this.state.inputKeyword}
-						id='search-input'
-						className='search-input'
-						name='search-input'
-					/>
+					<div className='form-flex'>
+						<div className='input-flex'>
+							<input 
+								type="text" 
+								placeholder='Search any food'
+								onChange={this.handleKeywordChange}
+								value={this.state.inputKeyword}
+								id='search-input'
+								className='search-input'
+								name='search-input'
+							/>
 
-{/*=========================================*/}
-					{/*Location search input*/}
-{/*=========================================*/}
-					<input 
-						type="text" 
-						placeholder='Type Location'
-						onChange={this.handleLocationChange}
-						value={this.state.inputLocation}
-						id='search-input'
-						className='search-input'
-						name='search-input'
-					/>
+		{/*=========================================*/}
+							{/*Location search input*/}
+		{/*=========================================*/}
+							<input 
+								type="text" 
+								placeholder='Type Location'
+								onChange={this.handleLocationChange}
+								value={this.state.inputLocation}
+								id='search-input'
+								className='search-input'
+								name='search-input'
+							/>
 
-{/*=========================================*/}
-	{/*Hidden error message for validation*/}
-{/*=========================================*/}
-
-					<p 
-
-						className={this.state.validLocation !== false ? 'hidden' : 'validation-error'}
-					>
+		{/*=========================================*/}
+			{/*Hidden error message for validation*/}
+		{/*=========================================*/}
+							</div>
+						<button className='submit-btn' type='submit'>►</button>
+					</div>
+					<p className={this.state.validLocation !== false ? 'hidden' : 'validation-error'}>
 						Location field can't be empty
-
 					</p>
-					<button className='submit-btn' type='submit'>►</button>
 				</form>
 			</div>
 		);
