@@ -16,6 +16,8 @@ class App extends React.Component {
       submitLocationLat: '',
       submitLocationLng: '',
       restaurantDetails: "",
+      isResultsFound: false,
+      error: ''
     };
 
     this.saveInputQueries = this.saveInputQueries.bind(this);
@@ -25,11 +27,12 @@ class App extends React.Component {
 
   }
 
-  saveInputQueries(inputKeywordQuery, lat, lng) {
+  saveInputQueries(inputKeywordQuery, lat, lng, isResultsFound) {
     this.setState({
       submitKeyword: inputKeywordQuery,
       submitLocationLat: lat,
-      submitLocationLng: lng
+      submitLocationLng: lng,
+      isResultsFound: isResultsFound
     }, this.fetchRestaurants);
   }
 
@@ -47,25 +50,35 @@ class App extends React.Component {
   }
 
   fetchRestaurants() {
-    let keyword;
-
-    if (this.state.submitKeyword === "") {
-      keyword = "";
+    
+    if(this.state.isResultsFound === false) {
+      this.setState({
+        data: [],
+        error: 'Sorry, couldn\'t find anything. Try another location'
+      });
     } else {
-      keyword = "&keyword=";
-    }
-    let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
+      let keyword;
 
-    fetch(fetchUrl)
-      .then((response) => {
+      if (this.state.submitKeyword === "") {
+        keyword = "";
+      } else {
+        keyword = "&keyword=";
+      }
+
+      let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
+      
+      fetch(fetchUrl)
+      .then((response)=>{
         return response.json();
-
       }).then(data=>{
         this.setState({
-          data: data.results,
-          restaurantsShown: true
+          data:data.results,
+          restaurantsShown:true,
+          error: ''
         });
       });
+    }
+
   }
 
   closeDetailHandler() {
@@ -91,6 +104,8 @@ class App extends React.Component {
 
     const restaurants = this.state.restaurantsShown ? createRestaurantCards() : null;
 
+    const error = this.state.error ? <h4>{this.state.error}</h4> : null;
+
     let renderedContent;
 
     if (this.state.view == "basic") {
@@ -100,6 +115,7 @@ class App extends React.Component {
           <section className='restaurants'>
             <h2 className='restaurants-list-header'>
               Top worst restaurants in your area</h2>
+              {error}
             <ul className='restaurants-list'>
               {restaurants}
             </ul>
@@ -117,7 +133,9 @@ class App extends React.Component {
     }
 
     return (
-      renderedContent
+      <div>
+        {renderedContent}
+      </div>
     );
   }
 }

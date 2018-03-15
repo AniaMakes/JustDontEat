@@ -37,12 +37,19 @@ class Search extends React.Component {
 			const inputKeywordQuery = this.state.inputKeyword;
 			let lat, 
 					lng;
+			let isResultsFound;
 			fetch('/api/get-geolocation/' + this.state.inputLocation)
 				.then(response => response.json())
 				.then(data => {
-					lat = data.lat;
-					lng = data.lng;
-					this.props.receiver(inputKeywordQuery, lat, lng);
+					if(data.status === 404) {
+						isResultsFound = false;
+						this.props.receiver(inputKeywordQuery, lat, lng, isResultsFound);
+					} else {
+						lat = data.lat;
+						lng = data.lng;
+						isResultsFound = true;
+						this.props.receiver(inputKeywordQuery, lat, lng, isResultsFound);
+					}
 				})
 				.catch(err => console.log(err));
 		} else {
