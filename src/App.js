@@ -34,12 +34,17 @@ class App extends React.Component {
 
   fetchDetails(details) {
     console.log("fetch details");
-    console.log(details);
+    //console.log(details);
     const processRestaurantDetails = require("../BE/lib/processRestaurantDetails");
     const detailsDummyData = require("../tests/dummyData/restaurantDetails");
     const detailsData = processRestaurantDetails(detailsDummyData.default);
 
-    const {name, rating, address, reviews, photoURL} = this.props;
+    console.log(this.props);
+    console.log(detailsData);
+
+    const photoURL = details[1];
+
+    const {name, rating, address, reviews, contactDetails} = detailsData;
 
     const outputRestaurantDetailsObject = {
       name,
@@ -69,7 +74,7 @@ class App extends React.Component {
       .then((response)=>{
         return response.json();
       }).then(data=>{
-        console.log(data);
+        //console.log(data);
         this.setState({
           data:data.results,
           restaurantsShown:true
@@ -108,8 +113,12 @@ class App extends React.Component {
           </section>
         </div>;
     } else {
+
+      console.log(this.state);
       renderedContent =
-        <RestaurantDetails name={this.details.restaurantDetails.name} rating={this.details.restaurantDetails.rating} address={this.details.restaurantDetails.address} reviews={this.details.restaurantDetails.reviews} photoURL={details[1]}/>;
+        <RestaurantDetails
+        key={this.state.restaurantDetails.photoURL}
+         name={this.state.restaurantDetails.name} rating={this.state.restaurantDetails.rating} address={this.state.restaurantDetails.address} reviews={this.state.restaurantDetails.reviews} photoURL={this.state.restaurantDetails.photoURL}/>;
     }
 
     return (

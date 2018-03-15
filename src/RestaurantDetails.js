@@ -3,9 +3,13 @@ import React from 'react';
 class RestaurantDetails extends React.Component {
 	constructor(props){
 		super(props);
+
+		this.closeDetail = this.closeDetail.bind(this);
 	};
 
-	// closeDetail
+	closeDetail(event){
+		console.log(event);
+	}
 
 	render() {
 		const {name,rating,address,reviews,photoURL} = this.props;
@@ -14,7 +18,7 @@ class RestaurantDetails extends React.Component {
 				      	<p>Author:{review.author_name}</p>
 								<p>Rating:{review.rating}</p>
 								<p>Review:{review.text}</p>
-								<p>Date:{new Date(review.time)}</p>
+								{/* <p>Date:{new Date(review.time)}</p> */}
 						 </article>);
 		});
 
@@ -26,11 +30,10 @@ class RestaurantDetails extends React.Component {
 				<div className='restaurant-details-name'>Restaurant name:{name}</div>
 				<div className='restaurant-details-rating'>Restaurant rating:{rating}</div>
 				<div className='restaurant-details-address'>Restaurant address:{address}</div>
-				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}>
+				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}
 			  </div>
-			  <button onClick={closeDetail}>X</button>
-{/*//removes the details page - state change occurs in app
-*/}			</div>
+			  <button onClick={this.closeDetail}>X</button>
+			</div>
 		);
 	}
 }
