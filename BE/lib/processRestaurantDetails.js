@@ -1,5 +1,5 @@
 function processRestaurantDetails(data){
-  details= data.result
+  const details= data.result
   let outputRestaurantDetailsObject = {};
   outputRestaurantDetailsObject.name = details.name;
   outputRestaurantDetailsObject.address = details.formatted_address;

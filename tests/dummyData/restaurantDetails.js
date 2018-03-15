@@ -1,4 +1,5 @@
 export default {
+  "result" : {
       "address_components" : [
          {
             "long_name" : "5",
@@ -276,4 +277,5 @@ export default {
       "utc_offset" : 600,
       "vicinity" : "5 48 Pirrama Road, Pyrmont",
       "website" : "https://www.google.com.au/about/careers/locations/sydney/"
-   };
+    }
+};
