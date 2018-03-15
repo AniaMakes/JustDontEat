@@ -135,15 +135,9 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
+.error {
+	display: block;
+}
 
 .hidden {
 	display: none;
