@@ -64,26 +64,31 @@ class App extends React.Component {
       keyword = "&keyword=";
     }
     let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
-    fetch(fetchUrl).then((response) => {
-      return response.json();
-    }).then(data => {
-      this.setState({data: data.results, restaurantsShown: true});
-    });
+
+    fetch(fetchUrl)
+      .then((response)=>{
+        return response.json();
+      }).then(data=>{
+        console.log(data);
+        this.setState({
+          data:data.results,
+          restaurantsShown:true
+        });
+      });
   }
 
-  render() {
-    const createRestaurantCards = () => {
-      return this.state.data
-        ? this.state.data.map(function(item) {
-          return <RestaurantCard
-            restaurantName={item.name}
-            key={item.place_id}
-            rating={item.rating}
-            photoURL={item.photoURL}
-            restaurantIdReceiver={this.fetchDetails}
-          />;
-        }, this)
-        : <h4>You are lucky!There is no bad restaurants in your area, </h4>;
+  render(){
+    const createRestaurantCards=()=>{
+      return this.state.data ? this.state.data.map(function(item) {
+        return <RestaurantCard
+                restaurantName={item.name}
+                key={item.place_id}
+                rating={item.rating}
+                photoURL={item.photoURL}
+                restaurantIdReceiver={this.fetchDetails}
+              />;
+      }, this):
+      <h4>You are lucky!There is no bad restaurants in your area, </h4>;
     };
 
     const restaurants= this.state.restaurantsShown? createRestaurantCards() : null;
