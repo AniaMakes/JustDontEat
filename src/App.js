@@ -44,7 +44,7 @@ class App extends React.Component {
   render(){
 
     const createRestaurantCards=()=>{
-      return this.state.restaurantsShown ? this.state.data.map(function(item) {
+      return !this.state.data ? this.state.data.map(function(item) {
         return <RestaurantCard
                 restaurantName={item.name}
                 key={item.place_id}
@@ -52,18 +52,21 @@ class App extends React.Component {
                 photoURL={item.photoURL}
               />;
       }): 
-      null;
+      <h4>You are lucky!There is no bad restaurants in your area, </h4>;
     };
+
+    const restaurants= this.state.restaurantsShown? createRestaurantCards() : null;
    
 
     return (
+      
       <div>
         <Search receiver={this.saveInputQueries} />
         <section className='restaurants'>
           <h2 className='restaurants-list-header'> Top worst restaurants in your area</h2>
           <ul className='restaurants-list'>
 
-            {createRestaurantCards()}
+            {restaurants}
 
           </ul>
         </section>

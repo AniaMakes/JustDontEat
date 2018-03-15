@@ -1,5 +1,6 @@
 
-const {googlePlacesApiKey, googleMapsApiKey, googlePlacesApiURL} = process.env
+const {googlePlacesApiKey} = process.env
+const googlePlacesApiURL='https://maps.googleapis.com/maps/api/place'
 const processRestaurantSearch = require('./lib/processRestaurantSearch');
 const processRestaurantDetails = require('./lib/processRestaurantDetails');
 const fetch = require('node-fetch');
@@ -18,10 +19,12 @@ function getPlaces(req, res) {
     
     //compiling fetch url
     const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant&keyword=${keyword}&key=${googlePlacesApiKey}`;
+    console.log(url)
     fetch(url).then((response) => {
         return response.json()
     }).then(data => {
         fillArr=data.results
+        console.log(data);
         if(data.next_page_token && fillArr.length<minLength) {
             getNextPage(data.next_page_token,fillArr,minLength,res) 
         }else{
@@ -67,8 +70,10 @@ function getPlaceDetails(req, res) {
 function getGeolocation(req, res){
 	//*************************************************//
 	// Using geocoder to get a coordinates via Promise //
-	//*************************************************//
-	fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.params.placeName}&sensor=false&key=${googlePlacesApiKey}`)
+    //*************************************************//
+    
+    
+	fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.placeName}&key=${googlePlacesApiKey}`)
 	  .then(response => response.json())
 	  .then(response => {
 	    res.status(200).json(response.results[0].geometry.location);
