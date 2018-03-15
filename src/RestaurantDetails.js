@@ -5,32 +5,36 @@ class RestaurantDetails extends React.Component {
 		super(props);
 	};
 
-	// closeDetail
-
 	render() {
 		const {name,rating,address,reviews,photoURL} = this.props;
-		let reviewsArray = reviews.map(function(review){
-			return (<article>
+
+		let reviewsArray = reviews.map(function(review,i){
+			let date = new Date(review.time*1000);
+			return (<article key={i}>
 				      	<p>Author:{review.author_name}</p>
-								<p>Rating:{review.rating}</p>
-								<p>Review:{review.text}</p>
-								<p>Date:{new Date(review.time)}</p>
-						 </article>);
+						<p>Rating:{review.rating}</p>
+						<p>Review:{review.text}</p>
+						<p>Date:{
+							`${date.getDate()} / ${date.getMonth()+1} / ${date.getFullYear()}`
+						}
+						</p>
+					 </article>);
 		});
 
 		return (
 			<div className='restaurant-details'>
-				<div className='restaurant-details-image'>
-					<img src={photoURL}/>
+				<div>
+					<img className='restaurant-details-image'
+						src={photoURL}/>
 				</div>
-				<div className='restaurant-details-name'>Restaurant name:{name}</div>
-				<div className='restaurant-details-rating'>Restaurant rating:{rating}</div>
-				<div className='restaurant-details-address'>Restaurant address:{address}</div>
-				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}>
+				<h3 className='restaurant-details-name'>{name}</h3>
+				<p className='restaurant-details-rating'>Rating:{rating}</p>
+				<p className='restaurant-details-address'>Address:{address}</p>
+				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}
 			  </div>
-			  <button onClick={closeDetail}>X</button>
-{/*//removes the details page - state change occurs in app
-*/}			</div>
+			  	<button onClick={this.props.closeDetail}>X</button>
+			  </div>
+
 		);
 	}
 }
