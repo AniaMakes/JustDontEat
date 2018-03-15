@@ -17,6 +17,7 @@ class App extends React.Component {
     };
 
     this.saveInputQueries = this.saveInputQueries.bind(this);
+    this.fetchRestaurants = this.fetchRestaurants.bind(this);
   }
 
   saveInputQueries(inputKeywordQuery, lat, lng) {
@@ -24,16 +25,24 @@ class App extends React.Component {
       submitKeyword: inputKeywordQuery,
       submitLocationLat: lat, 
       submitLocationLng: lng
-    });
+    }, 
+    this.fetchRestaurants
+    );
   }
 
-  componentDidMount(){
-    fetch('http://localhost:3000/api/get-places?keyword=chinese&lat=-33.8670522&long=151.1957362')
+  fetchRestaurants(){
+    let keyword;
+
+    if(this.state.submitKeyword === ""){
+      keyword = "";
+    } else {
+      keyword = "&keyword=";
+    }
+    let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
+    fetch(fetchUrl)
       .then((response)=>{
-        console.log(response);
         return response.json();
       }).then(data=>{
-        console.log(data);
         this.setState({
           data:data.results,
           restaurantsShown:true
@@ -42,7 +51,6 @@ class App extends React.Component {
   }
 
   render(){
-
     const createRestaurantCards=()=>{
       return this.state.restaurantsShown ? this.state.data.map(function(item) {
         return <RestaurantCard
