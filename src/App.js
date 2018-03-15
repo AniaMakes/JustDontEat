@@ -33,13 +33,11 @@ class App extends React.Component {
   }
 
   fetchDetails(details) {
-    console.log(details);
     fetch(`http://localhost:3000/api/get-place-details?placeId=${details[0]}`)
       .then(response => response.json())
       .then(data => {
         let outputRestaurantDetailsObject = data;
         outputRestaurantDetailsObject.photoURL = details[1];
-        console.log(outputRestaurantDetailsObject);
         this.setState({
           view: "details",
           restaurantDetails: outputRestaurantDetailsObject
