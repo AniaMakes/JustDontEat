@@ -7,7 +7,8 @@ const fetch = require('node-fetch');
 
 function getPlaces(req, res) {
     // getting queries from request
-    const keyword = req.query.keyword;
+    const keyword = req.query.keyword? '&keyword='+req.query.keyword : ''
+    
     const lat = req.query.lat;
     const long = req.query.long;
     // assigning default search radius if not specified
@@ -18,7 +19,7 @@ function getPlaces(req, res) {
     minLength=10;
     
     //compiling fetch url
-    const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant&keyword=${keyword}&key=${googlePlacesApiKey}`;
+    const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant${keyword}&key=${googlePlacesApiKey}`;
     console.log(url)
     fetch(url).then((response) => {
         return response.json()

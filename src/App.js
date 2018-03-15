@@ -43,6 +43,7 @@ class App extends React.Component {
       .then((response)=>{
         return response.json();
       }).then(data=>{
+        console.log(data);
         this.setState({
           data:data.results,
           restaurantsShown:true
@@ -52,7 +53,7 @@ class App extends React.Component {
 
   render(){
     const createRestaurantCards=()=>{
-      return !this.state.data ? this.state.data.map(function(item) {
+      return this.state.data ? this.state.data.map(function(item) {
         return <RestaurantCard
                 restaurantName={item.name}
                 key={item.place_id}
