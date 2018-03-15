@@ -16,7 +16,7 @@ function getPlaces(req, res) {
     //creating an empty array to fill
     let fillArr=[]
     //defining how many results we would like to fetch minimum
-    let minLength=10;
+    let minLength=5;
     
     //compiling fetch url
     const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant&keyword=${keyword}&key=${googlePlacesApiKey}`;

@@ -9,12 +9,12 @@ class RestaurantDetails extends React.Component {
 
 	render() {
 		const {name,rating,address,reviews,photoURL} = this.props;
-		let reviewsArray = reviews.map(function(review){
-			return (<article>
+		let reviewsArray = reviews.map(function(review,i){
+			return (<article key={i}>
 				      	<p>Author:{review.author_name}</p>
 								<p>Rating:{review.rating}</p>
 								<p>Review:{review.text}</p>
-								<p>Date:{new Date(review.time)}</p>
+								<p>Date:{review.time}</p>
 						 </article>);
 		});
 
@@ -28,7 +28,8 @@ class RestaurantDetails extends React.Component {
 				<div className='restaurant-details-address'>Restaurant address:{address}</div>
 				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}>
 			  </div>
-			  <button onClick={closeDetail}>X</button>
+			  <button onClick={this.props.closeDetail}>X</button>
+			  {/* <button onClick={this.props.closeDetail}>X</button> */}
 {/*//removes the details page - state change occurs in app
 */}			</div>
 		);
