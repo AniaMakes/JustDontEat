@@ -1,7 +1,8 @@
 function processRestaurantSearch(results, APIkey){
-
-  let outputArray = results.map(function(restaurant) {
+  let outputArray = results.reduce(function(acc,restaurant) {
     let outputRestaurantObject = {};
+    if(+(restaurant.rating)<3.5){
+    
 
     if (restaurant.hasOwnProperty("photos")){
       let photoRef = restaurant.photos[0].photo_reference;
@@ -19,8 +20,10 @@ function processRestaurantSearch(results, APIkey){
     outputRestaurantObject.place_id=restaurant.place_id;
     outputRestaurantObject.rating = restaurant.rating;
 
-    return outputRestaurantObject;
-  });
+    acc.push(outputRestaurantObject)
+  }
+    return acc;
+  },[]);
 
   return outputArray;
 
