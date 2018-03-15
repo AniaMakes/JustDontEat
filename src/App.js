@@ -73,13 +73,20 @@ class App extends React.Component {
 
   render() {
     const createRestaurantCards = () => {
-      return this.state.restaurantsShown
+      return this.state.data
         ? this.state.data.map(function(item) {
-          return <RestaurantCard restaurantName={item.name} key={item.place_id} rating={item.rating} photoURL={item.photoURL}
-          restaurantIdReceiver={this.fetchDetails}/>;
+          return <RestaurantCard
+            restaurantName={item.name}
+            key={item.place_id}
+            rating={item.rating}
+            photoURL={item.photoURL}
+            restaurantIdReceiver={this.fetchDetails}
+          />;
         }, this)
-        : null;
+        : <h4>You are lucky!There is no bad restaurants in your area, </h4>;
     };
+
+    const restaurants= this.state.restaurantsShown? createRestaurantCards() : null;
 
     let renderedContent;
 
@@ -91,9 +98,7 @@ class App extends React.Component {
             <h2 className='restaurants-list-header'>
               Top worst restaurants in your area</h2>
             <ul className='restaurants-list'>
-
-              {createRestaurantCards()}
-
+              {restaurants}
             </ul>
           </section>
         </div>;
