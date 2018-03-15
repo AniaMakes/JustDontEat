@@ -60,8 +60,8 @@ class App extends React.Component {
     fetch(fetchUrl)
       .then((response) => {
         return response.json();
-      }).then(data => {
-        console.log(data);
+
+      }).then(data=>{
         this.setState({
           data: data.results,
           restaurantsShown: true
