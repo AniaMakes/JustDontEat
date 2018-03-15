@@ -21,6 +21,7 @@ class App extends React.Component {
     this.saveInputQueries = this.saveInputQueries.bind(this);
     this.fetchDetails = this.fetchDetails.bind(this);
     this.fetchRestaurants = this.fetchRestaurants.bind(this);
+    this.closeDetailHandler = this.closeDetailHandler.bind(this);
 
   }
 
@@ -67,6 +68,13 @@ class App extends React.Component {
       });
   }
 
+  closeDetailHandler() {
+    this.setState({
+      view: 'basic',
+      restaurantDetails: ''
+    });
+  }
+
   render() {
     const createRestaurantCards = () => {
       return this.state.data ? this.state.data.map(function (item) {
@@ -103,34 +111,14 @@ class App extends React.Component {
       rating={this.state.restaurantDetails.rating} 
       address={this.state.restaurantDetails.address} 
       reviews={this.state.restaurantDetails.reviews} 
-      photoURL={this.state.restaurantDetails.photoURL} 
+      photoURL={this.state.restaurantDetails.photoURL}
+      closeDetail={this.closeDetailHandler} 
       />;
     }
 
     return (
       renderedContent
     );
-
-    // return (<div>
-    //   <Search receiver={this.saveInputQueries}/>
-    //   <section className='restaurants'>
-    //     <h2 className='restaurants-list-header'>
-    //       Top worst restaurants in your area</h2>
-    //     <ul className='restaurants-list'>
-    //
-    //       {createRestaurantCards()}
-    //
-    //     </ul>
-    //   </section>
-    // </div>);
-
-
-
-    // let detailsJSX = <RestaurantDetails name={detailsData.name} rating={detailsData.rating} address={detailsData.address} reviews={detailsData.reviews} photoURL={details[1]}/>;
-
-    // } else {
-    //   return ({this.state.restaurantDetailJSX});
-    // }
   }
 }
 

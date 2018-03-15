@@ -3,21 +3,13 @@ import React from 'react';
 class RestaurantDetails extends React.Component {
 	constructor(props){
 		super(props);
-
-		this.closeDetail = this.closeDetail.bind(this);
 	};
-
-	closeDetail(event){
-		console.log(event);
-	}
 
 	render() {
 		const {name,rating,address,reviews,photoURL} = this.props;
 
 		let reviewsArray = reviews.map(function(review,i){
-			// console.log(review.time);
 			let date = new Date(review.time*1000);
-			// console.log('date', date);
 			return (<article key={i}>
 				      	<p>Author:{review.author_name}</p>
 						<p>Rating:{review.rating}</p>
@@ -40,9 +32,8 @@ class RestaurantDetails extends React.Component {
 				<p className='restaurant-details-address'>Address:{address}</p>
 				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}
 			  </div>
-			  {/* <button onClick={this.props.closeDetail}>X</button> */}
-{/*//removes the details page - state change occurs in app
-*/}			</div>
+			  	<button onClick={this.props.closeDetail}>X</button>
+			  </div>
 
 		);
 	}
