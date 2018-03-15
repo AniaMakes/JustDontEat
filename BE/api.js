@@ -4,9 +4,8 @@ const googlePlacesApiURL='https://maps.googleapis.com/maps/api/place'
 const processRestaurantSearch = require('./lib/processRestaurantSearch');
 const processRestaurantDetails = require('./lib/processRestaurantDetails');
 const fetch = require('node-fetch');
-let counter =0;
+
 function getPlaces(req, res) {
-    counter = 0;
     // getting queries from request
     const keyword = req.query.keyword? req.query.keyword : 'food'
 
@@ -37,9 +36,6 @@ function getPlaces(req, res) {
 }
 
 function getNextPage(nextPageToken,fillArr,minLength,res) {
-    
-    counter= counter+1;
-    console.log(counter);
     const url = `${googlePlacesApiURL}/nearbysearch/json?pagetoken=${nextPageToken}&key=${googlePlacesApiKey}`;
     setTimeout(()=>{
         fetch(url).then((response) => {
