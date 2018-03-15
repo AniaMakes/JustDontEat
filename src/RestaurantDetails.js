@@ -10,11 +10,13 @@ class RestaurantDetails extends React.Component {
 
 		let reviewsArray = reviews.map(function(review,i){
 			let date = new Date(review.time*1000);
-			return (<article key={i}>
-				      	<p>Author:{review.author_name}</p>
-						<p>Rating:{review.rating}</p>
-						<p>Review:{review.text}</p>
-						<p>Date:{
+			return (<article className='review-block'key={i}>
+						<div className='review-header'>
+				      		<p className='review-author'>Author:<b className='review-author-bold'>{review.author_name}</b></p>
+							<p className='review-rating'>Rated:<b className='review-rating-bold'>{review.rating}</b></p>
+						</div>
+						<p className='review-text'>"{review.text}"</p>
+						<p className='review-date'>Date:{
 							`${date.getDate()} / ${date.getMonth()+1} / ${date.getFullYear()}`
 						}
 						</p>
@@ -28,7 +30,7 @@ class RestaurantDetails extends React.Component {
 						src={photoURL}/>
 				</div>
 				<h3 className='restaurant-details-name'>{name}</h3>
-				<p className='restaurant-details-rating'>Rating:{rating}</p>
+				<p className='restaurant-details-rating'>Rating:<b className='details-rating'>{rating}</b></p>
 				<p className='restaurant-details-address'>Address:{address}</p>
 				<div className='restaurant-details-reviews'>Reviews:{reviewsArray}
 			  </div>
