@@ -100,7 +100,7 @@ class App extends React.Component {
           restaurantIdReceiver={this.fetchDetails}
         />;
       }, this) :
-        <h4 className={this.state.error ? 'hidden' : 'error'}>You are lucky!There is no bad restaurants in your area, </h4>;
+        <p className={this.state.error ? 'hidden' : 'error'}>You are lucky! There is no bad restaurants in your area </p>;
     };
 
     const restaurants = this.state.restaurantsShown ? createRestaurantCards() : null;
@@ -116,7 +116,7 @@ class App extends React.Component {
             {error}
           <section 
               className={this.state.restaurantsShown ? 'restaurants' : 'hidden'}>
-            <h2 className='restaurants-list-header'>
+            <h2 className={this.state.data.length === 0 ? 'hidden' : 'restaurants-list-header'}>
               Top worst restaurants in your area</h2>
             
             <ul className='restaurants-list'>
