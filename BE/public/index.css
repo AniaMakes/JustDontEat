@@ -110,6 +110,32 @@ body {
 	object-fit: cover;
 }
 
+.restaurant-details-name {
+	font-size: 1.2rem;
+}
+
+.restaurant-details-reviews {
+	margin-bottom: 0.3rem;
+}
+
+.review-block {
+	width: 95%;
+	border: 1px solid grey;
+	margin-bottom: 0.5rem;
+}
+
+.review-header {
+	display: flex;
+	justify-content: space-around;
+}
+
+.review-text {
+	text-indent: 1rem;
+	font-style: italic;
+}
+
+
+
 
 
 
