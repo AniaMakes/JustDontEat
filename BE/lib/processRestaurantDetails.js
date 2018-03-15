@@ -6,7 +6,6 @@ function processRestaurantDetails(data){
   outputRestaurantDetailsObject.rating = details.rating;
   outputRestaurantDetailsObject.contactDetails = details.international_phone_number;
   outputRestaurantDetailsObject.reviews = details.reviews.sort((a,b)=> a.rating-b.rating);
-  console.log(outputRestaurantDetailsObject)
   return outputRestaurantDetailsObject;
 }
 
