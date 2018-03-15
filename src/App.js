@@ -90,8 +90,9 @@ class App extends React.Component {
 
   render() {
     const createRestaurantCards = () => {
-      return this.state.data ? this.state.data.map(function (item) {
+      return this.state.data ? this.state.data.map(function (item, index) {
         return <RestaurantCard
+          key={index}
           restaurantName={item.name}
           rating={item.rating}
           photoURL={item.photoURL}
