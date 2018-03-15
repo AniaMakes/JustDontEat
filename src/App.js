@@ -100,7 +100,7 @@ class App extends React.Component {
           restaurantIdReceiver={this.fetchDetails}
         />;
       }, this) :
-        <h4>You are lucky!There is no bad restaurants in your area, </h4>;
+        <h4 className={this.state.error ? 'hidden' : 'error'}>You are lucky!There is no bad restaurants in your area, </h4>;
     };
 
     const restaurants = this.state.restaurantsShown ? createRestaurantCards() : null;
@@ -113,10 +113,12 @@ class App extends React.Component {
       renderedContent =
         <div>
           <Search receiver={this.saveInputQueries} />
-          <section className='restaurants'>
+            {error}
+          <section 
+              className={this.state.restaurantsShown ? 'restaurants' : 'hidden'}>
             <h2 className='restaurants-list-header'>
               Top worst restaurants in your area</h2>
-              {error}
+            
             <ul className='restaurants-list'>
               {restaurants}
             </ul>
