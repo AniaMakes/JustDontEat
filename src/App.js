@@ -33,31 +33,16 @@ class App extends React.Component {
   }
 
   fetchDetails(details) {
-    console.log("fetch details");
-    //console.log(details);
-    const processRestaurantDetails = require("../BE/lib/processRestaurantDetails");
-    const detailsDummyData = require("../tests/dummyData/restaurantDetails");
-    const detailsData = processRestaurantDetails(detailsDummyData.default);
-
-    console.log(this.props);
-    console.log(detailsData);
-
-    const photoURL = details[1];
-
-    const {name, rating, address, reviews, contactDetails} = detailsData;
-
-    const outputRestaurantDetailsObject = {
-      name,
-      rating,
-      address,
-      reviews,
-      photoURL
-    };
-
-    this.setState({
-      view : "details",
-      restaurantDetails : outputRestaurantDetailsObject
-    });
+    fetch(`http://localhost:3000/api/get-place-details?placeId=${details[0]}`)
+      .then(response => response.json())
+      .then(data => {
+        let outputRestaurantDetailsObject = data;
+        outputRestaurantDetailsObject.photoURL = details[1];
+        this.setState({
+          view: "details",
+          restaurantDetails: outputRestaurantDetailsObject
+        });
+      });
   }
 
   fetchRestaurants() {
@@ -71,39 +56,39 @@ class App extends React.Component {
     let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
 
     fetch(fetchUrl)
-      .then((response)=>{
+      .then((response) => {
         return response.json();
+
       }).then(data=>{
-        //console.log(data);
         this.setState({
-          data:data.results,
-          restaurantsShown:true
+          data: data.results,
+          restaurantsShown: true
         });
       });
   }
 
-  render(){
-    const createRestaurantCards=()=>{
-      return this.state.data ? this.state.data.map(function(item) {
+  render() {
+    const createRestaurantCards = () => {
+      return this.state.data ? this.state.data.map(function (item) {
         return <RestaurantCard
-                restaurantName={item.name}
-                key={item.place_id}
-                rating={item.rating}
-                photoURL={item.photoURL}
-                restaurantIdReceiver={this.fetchDetails}
-              />;
-      }, this):
-      <h4>You are lucky!There is no bad restaurants in your area, </h4>;
+          restaurantName={item.name}
+          rating={item.rating}
+          photoURL={item.photoURL}
+          restaurantId={item.place_id}
+          restaurantIdReceiver={this.fetchDetails}
+        />;
+      }, this) :
+        <h4>You are lucky!There is no bad restaurants in your area, </h4>;
     };
 
-    const restaurants= this.state.restaurantsShown? createRestaurantCards() : null;
+    const restaurants = this.state.restaurantsShown ? createRestaurantCards() : null;
 
     let renderedContent;
 
-    if(this.state.view == "basic"){
+    if (this.state.view == "basic") {
       renderedContent =
         <div>
-          <Search receiver={this.saveInputQueries}/>
+          <Search receiver={this.saveInputQueries} />
           <section className='restaurants'>
             <h2 className='restaurants-list-header'>
               Top worst restaurants in your area</h2>
@@ -113,12 +98,13 @@ class App extends React.Component {
           </section>
         </div>;
     } else {
-
-      console.log(this.state);
-      renderedContent =
-        <RestaurantDetails
-        key={this.state.restaurantDetails.photoURL}
-         name={this.state.restaurantDetails.name} rating={this.state.restaurantDetails.rating} address={this.state.restaurantDetails.address} reviews={this.state.restaurantDetails.reviews} photoURL={this.state.restaurantDetails.photoURL}/>;
+      renderedContent = <RestaurantDetails 
+      name={this.state.restaurantDetails.name} 
+      rating={this.state.restaurantDetails.rating} 
+      address={this.state.restaurantDetails.address} 
+      reviews={this.state.restaurantDetails.reviews} 
+      photoURL={this.state.restaurantDetails.photoURL} 
+      />;
     }
 
     return (
@@ -140,11 +126,11 @@ class App extends React.Component {
 
 
 
-        // let detailsJSX = <RestaurantDetails name={detailsData.name} rating={detailsData.rating} address={detailsData.address} reviews={detailsData.reviews} photoURL={details[1]}/>;
+    // let detailsJSX = <RestaurantDetails name={detailsData.name} rating={detailsData.rating} address={detailsData.address} reviews={detailsData.reviews} photoURL={details[1]}/>;
 
-  // } else {
-  //   return ({this.state.restaurantDetailJSX});
-  // }
+    // } else {
+    //   return ({this.state.restaurantDetailJSX});
+    // }
   }
 }
 

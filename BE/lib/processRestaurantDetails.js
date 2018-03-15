@@ -1,13 +1,12 @@
-function processRestaurantDetails(details){
-
+function processRestaurantDetails(data){
+  details= data.result
   let outputRestaurantDetailsObject = {};
-
   outputRestaurantDetailsObject.name = details.name;
   outputRestaurantDetailsObject.address = details.formatted_address;
   outputRestaurantDetailsObject.rating = details.rating;
   outputRestaurantDetailsObject.contactDetails = details.international_phone_number;
   outputRestaurantDetailsObject.reviews = details.reviews.sort((a,b)=> a.rating-b.rating);
-
+  console.log(outputRestaurantDetailsObject)
   return outputRestaurantDetailsObject;
 }
 
