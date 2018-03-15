@@ -72,7 +72,6 @@ function getGeolocation(req, res){
 	fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${placeInput}&key=${googlePlacesApiKey}`)
 	  .then(response => response.json())
 	  .then(response => {
-        console.log(response)
         if(response.status === 'ZERO_RESULTS') {
             res.status(200).json({"status": 404});
         } else {
