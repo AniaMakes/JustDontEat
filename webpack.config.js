@@ -5,20 +5,26 @@ module.exports = {
   devtool: 'source-map',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'BE/public/dist')
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: require.resolve('babel-loader')
+        loader: require.resolve('babel-loader'),
+        query: {
+          presets: ['es2015','stage-0','react'],
+        }
       },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: require.resolve('eslint-loader')
+        loader: require.resolve('eslint-loader'),
+        options: {
+          fix: true,
+        }
       }
     ]
-  }
+  },
 };

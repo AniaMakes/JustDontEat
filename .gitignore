@@ -1,2 +1,4 @@
 /node_modules
-/dist
+dist
+.envrc
+.DS_Store

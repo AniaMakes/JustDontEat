@@ -1,4 +1,4 @@
-const processRestaurantDetails = require("../lib/processRestaurantDetails");
+const processRestaurantDetails = require("../BE/lib/processRestaurantDetails");
 
 const detailsDummyData = require("./dummyData/restaurantDetails.js");
 

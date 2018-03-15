@@ -1,6 +1,4 @@
-export default {
-   "html_attributions" : [],
-   "results" : [
+export default [
       {
          "geometry" : {
             "location" : {
@@ -239,6 +237,4 @@ export default {
          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
          "vicinity" : "45 Shelley St, Sydney"
       }
-   ],
-   "status" : "OK"
-};
+   ]
