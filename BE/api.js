@@ -20,12 +20,12 @@ function getPlaces(req, res) {
     
     //compiling fetch url
     const url = `${googlePlacesApiURL}/nearbysearch/json?location=${lat},${long}&radius=${radius}&type=restaurant${keyword}&key=${googlePlacesApiKey}`;
-    console.log(url)
+    // console.log(url)
     fetch(url).then((response) => {
         return response.json()
     }).then(data => {
         fillArr=data.results
-        console.log(data);
+        // console.log(data);
         if(data.next_page_token && fillArr.length<minLength) {
             getNextPage(data.next_page_token,fillArr,minLength,res) 
         }else{
@@ -69,15 +69,17 @@ function getPlaceDetails(req, res) {
 }
 
 function getGeolocation(req, res){
-	//*************************************************//
-	// Using geocoder to get a coordinates via Promise //
-    //*************************************************//
     
-    
-	fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.placeName}&key=${googlePlacesApiKey}`)
+    const placeInput = encodeURIComponent(req.params.placeName.trim())
+	fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${placeInput}&key=${googlePlacesApiKey}`)
 	  .then(response => response.json())
 	  .then(response => {
-	    res.status(200).json(response.results[0].geometry.location);
+        console.log(response)
+        if(response.status === 'ZERO_RESULTS') {
+            res.status(200).json({"status": 404});
+        } else {
+            res.status(200).json(response.results[0].geometry.location);
+        }
 	  }).catch(function(err) {
 	    console.log(err);
 	 	});
