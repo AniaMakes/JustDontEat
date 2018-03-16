@@ -103,6 +103,12 @@ body {
 }
 
 /* RESTAURANT DETAILS */
+.restaurant-details {
+	position: relative;
+}
+.info-wrapper {
+	margin-left: 1rem;
+}
 
 .restaurant-details-image {
 	width: 300px;
@@ -112,13 +118,20 @@ body {
 
 .restaurant-details-name {
 	font-size: 1.2rem;
+	margin-left: 2rem
 }
 
-.restaurant-details-reviews {
-	margin-bottom: 0.3rem;
+.reviews-block {
+	display: flex;
+	flex-direction: column;
 }
 
-.review-block {
+.reviews-block-header {
+	margin-left: 2rem;
+}
+
+.review-article {
+	padding: 0.4rem;
 	width: 95%;
 	border: 1px solid grey;
 	margin-bottom: 0.5rem;
@@ -134,6 +147,11 @@ body {
 	font-style: italic;
 }
 
+.btn-back {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+}
 
 .error {
 	display: block;
@@ -142,6 +160,7 @@ body {
 .hidden {
 	display: none;
 }
+
 
 /*SPINNER STYLES*/
 
@@ -263,3 +282,30 @@ body {
 }
 
 /*SPINNER STYLES END*/
+
+@media screen and (min-width: 1024px) {
+	.reviews-block {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	.review-article {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 0.4rem;
+		width: 45%;
+	}
+
+	.info-wrapper {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-left: 0;
+	}
+}
+
+
+
+
