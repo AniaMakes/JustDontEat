@@ -6,8 +6,8 @@ function processRestaurantSearch(results, APIkey){
 
     if (restaurant.hasOwnProperty("photos")){
       let photoRef = restaurant.photos[0].photo_reference;
-      //outputRestaurantObject.photoURL = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoRef}&maxheight=400&key=${APIkey}`;
-      outputRestaurantObject.photoURL = `https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?w=800&h=600&dpr=3&auto=compress&cs=tinysrgb`;
+      outputRestaurantObject.photoURL = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoRef}&maxheight=400&key=${APIkey}`;
+      //outputRestaurantObject.photoURL = `https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?w=800&h=600&dpr=3&auto=compress&cs=tinysrgb`;
     } else {
       outputRestaurantObject.photoURL = "placeholder-image.jpg";
     }
