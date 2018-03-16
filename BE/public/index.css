@@ -79,12 +79,19 @@ body {
 	top:1px;
 }
 
-.validation-error {
+.validation-message {
 	display: flex;
 	justify-content: center;
 	font-size: 1rem;
 	color: #0b40ad;
-	margin-left: -3rem;
+}
+
+.validation-error {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	font-size: 1rem;
+	color: #0b40ad;
 
 }
 
@@ -233,10 +240,10 @@ body {
 
 
 .error {
-	display: block;
+	display: flex;
+	justify-content: center;
 	font-size: 1rem;
 	color: #0b40ad;
-	margin-left: -3rem;
 }
 
 .hidden {
