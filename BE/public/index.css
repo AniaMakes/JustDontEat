@@ -79,12 +79,19 @@ body {
 	top:1px;
 }
 
-.validation-error {
+.validation-message {
 	display: flex;
 	justify-content: center;
 	font-size: 1rem;
 	color: #0b40ad;
-	margin-left: -3rem;
+}
+
+.validation-error {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	font-size: 1rem;
+	color: #0b40ad;
 
 }
 
@@ -165,7 +172,7 @@ body {
 	position: relative;
 }
 .info-wrapper {
-	margin-left: 1rem;
+	margin: 3rem 1rem 1rem;
 }
 
 .restaurant-details-image {
@@ -182,7 +189,7 @@ body {
 .reviews-block {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: ;
 }
 
 .reviews-block-header {
@@ -190,7 +197,6 @@ body {
 }
 
 .review-article {
-	position: relative;
 	padding: 0.4rem;
 	width: 90%;
 	border: 1px solid grey;
@@ -214,9 +220,10 @@ body {
 	font-style: italic;
 }
 
+
 .btn-back {
 	position: absolute;
-	top: 0;
+	top: -2rem ;
 	right: 1rem;
 	font-size: 0.8rem;
 	border: solid 2px #A9A9A9;
@@ -232,12 +239,23 @@ body {
 }
 
 .review-rating{
-	position: absolute;
+	font-size:0.8rem;
 	top: 2rem;
 	right: 2rem;
+	-webkit-margin-after:0px;
+	-webkit-margin-before: 0px;
+}
+.review-rating-bold{
+	font-size:2rem;
 }
 
-
+.restaurant-details-rating{
+	font-size:1.2rem;
+	top: 2rem;
+	right: 2rem;
+	-webkit-margin-after:0px;
+	-webkit-margin-before: 0px;
+}
 
 .error {
 	display: block;
@@ -378,6 +396,113 @@ body {
 	.restaurant-card {
 		width: 75%;
 	}
+
+
+/*RESTAURANT CARD COMPONENT*/
+
+.restaurant-card {
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	margin-bottom: 1rem;
+	background-color: #ffffff;
+	color: #000000;
+	border: solid 1px #A9A9A9;
+
+}
+
+.card-header {
+	display: flex;
+	padding: 0.4rem;
+}
+
+.card-info {
+	padding-left: 0.6rem;
+}
+
+.restaurant-name {
+	margin: 0.4rem 0.2rem 0rem 0rem;
+	padding: 0;
+	font-size: 1rem;
+	color: #042464;
+}
+
+.restaurant-rating {
+	font-size: 0.8rem;
+}
+
+.rating-number {
+	font-size: 1rem;
+	color: #0e46b6;
+}
+
+.restaurant-image{
+	width:100px;
+	height:100px;
+	object-fit: cover;
+}
+
+.btn-more {
+	background-color: #b0b4c1;
+	font-size: 0.8rem;
+	font-family: 'Mina', sans-serif;
+}
+
+/* RESTAURANT DETAILS */
+.restaurant-details {
+	position: relative;
+}
+.info-wrapper {
+	margin: 3rem 1rem 1rem 1rem ;
+}
+
+.restaurant-details-image {
+	display:block;
+	width:450px;
+	height: 300px;
+	object-fit: cover;
+}
+
+.restaurant-details-name {
+	font-size: 1.8rem;
+}
+
+.reviews-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.reviews-block-header {
+	font-size: 1.5rem;
+	margin-left: 1rem;
+}
+
+.review-article {
+	position: relative;
+	padding: 3%;
+	width: 94%;
+	border: 1px solid grey;
+	margin-bottom: 0.5rem;
+	background-color: #ffffff;
+	color: #000000;
+	
+}
+
+.details-rating {
+	font-size: 2rem;
+	color: #0b40ad;
+}
+
+.review-header {
+	display: flex;
+	justify-content: space-around;
+}
+
+.review-text {
+	text-indent: 1rem;
+	font-style: italic;
+}
 }
 
 @media screen and (min-width: 768px) {
@@ -394,10 +519,11 @@ body {
 	}
 
 	.review-article {
+		position: relative;
+		padding: 2em;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		padding: 0.4rem;
 		width: 45%;
 	}
 
@@ -417,6 +543,8 @@ body {
 	.restaurant-card {
 		width: 45%;
 	}
+
+	
 }
 
 

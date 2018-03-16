@@ -13,7 +13,7 @@ class RestaurantDetails extends React.Component {
 			return (<article className='review-article'key={i}>
 						<div className='review-header'>
 				      		<p className='review-author'>Author: <b className='review-author-bold'>{review.author_name}</b></p>
-							<p className='review-rating'>Rated: <b className='review-rating-bold'>{review.rating}</b></p>
+							<p className='review-rating'>Rating: <b className='review-rating-bold'>{review.rating}</b>/5</p>
 						</div>
 						<p className='review-text'>"{review.text}"</p>
 						<p className='review-date'>Date: {
