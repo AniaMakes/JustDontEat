@@ -40,6 +40,11 @@ body {
     padding-bottom: 4px;
     padding-left: 10px;
     padding-right: 10px;
+    outline: none;
+}
+
+.search-input:focus {
+	border: solid 2px #888585;
 }
 
 .search-input:first-child {
@@ -50,25 +55,43 @@ body {
 	margin-left: 0.8rem;
 	font-size: 0.7rem;
 	background-color: #b0b4c1;
-    border: solid 1px #A9A9A9;
-    font-size: 0.7rem;
-    color: #000000;
-    font-weight: bold;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-right: 1.2rem;
-    padding-left: 1.2rem;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+  border: solid 1px #A9A9A9;
+  font-size: 0.7rem;
+  color: #000000;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1.2rem;
+  padding-left: 1.2rem;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.submit-btn:hover {
+	background-color: #a1a4ae;
+}
+
+.submit-btn:active {
+	background-color: #8b8c91;
+	position:relative;
+	top:1px;
+}
+
+.validation-message {
+	display: flex;
+	justify-content: center;
+	font-size: 1rem;
+	color: #0b40ad;
 }
 
 .validation-error {
 	display: flex;
 	justify-content: center;
+	text-align: center;
 	font-size: 1rem;
 	color: #0b40ad;
-	margin-left: -3rem;
 
 }
 
@@ -217,10 +240,10 @@ body {
 
 
 .error {
-	display: block;
+	display: flex;
+	justify-content: center;
 	font-size: 1rem;
 	color: #0b40ad;
-	margin-left: -3rem;
 }
 
 .hidden {
