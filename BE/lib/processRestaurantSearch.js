@@ -9,7 +9,7 @@ function processRestaurantSearch(results, APIkey){
       //outputRestaurantObject.photoURL = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoRef}&maxheight=400&key=${APIkey}`;
       outputRestaurantObject.photoURL = `https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?w=800&h=600&dpr=3&auto=compress&cs=tinysrgb`;
     } else {
-      outputRestaurantObject.photoURL = "placeholder-image";
+      outputRestaurantObject.photoURL = "placeholder-image.jpg";
     }
 
     //TODO add actual placeholder image path
