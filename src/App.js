@@ -111,7 +111,7 @@ class App extends React.Component {
 
     const restaurants = this.state.restaurantsShown ? createRestaurantCards() : null;
 
-    const error = this.state.error ? <h4>{this.state.error}</h4> : null;
+    const error = this.state.error ? <h4 className='validation-message'>{this.state.error}</h4> : null;
 
     let renderedContent;
 
