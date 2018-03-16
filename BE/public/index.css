@@ -166,7 +166,7 @@ body {
 .reviews-block {
 	display: flex;
 	flex-direction: column;
-	justify-content: ;
+	justify-content: space-around;
 }
 
 .reviews-block-header {
@@ -174,6 +174,7 @@ body {
 }
 
 .review-article {
+	position: relative;
 	padding: 0.4rem;
 	width: 90%;
 	border: 1px solid grey;
@@ -212,6 +213,12 @@ body {
     padding-bottom: 4px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.review-rating{
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
 }
 
 
