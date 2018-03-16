@@ -36,7 +36,7 @@ class RestaurantCard extends React.Component {
 					<p className='restaurant-rating'> Rating: <b className='rating-number'>{rating}</b></p>
 					</div>
 				</div>
-				<button onClick={this.clickHandler}> Read more </button>
+				<button className='btn-more' onClick={this.clickHandler}> Read more </button>
 			</article>
 		);
 	}

@@ -148,9 +148,9 @@ class App extends React.Component {
             <h2 className={this.state.data.length === 0 ? 'hidden' : 'restaurants-list-header'}>
               Top worst restaurants in your area</h2>
             
-            <ul className='restaurants-list'>
+            <div className='restaurants-list'>
               {restaurants}
-            </ul>
+            </div>
           </section>
         </div>;
     } else {
