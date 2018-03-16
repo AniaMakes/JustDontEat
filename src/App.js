@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import Search from './Search';
 import RestaurantCard from './RestaurantCard';
 import RestaurantDetails from './RestaurantDetails';
@@ -17,7 +18,8 @@ class App extends React.Component {
       submitLocationLng: '',
       restaurantDetails: "",
       isResultsFound: false,
-      error: ''
+      error: '',
+      isLoading: false
     };
 
     this.saveInputQueries = this.saveInputQueries.bind(this);
@@ -49,6 +51,7 @@ class App extends React.Component {
       });
   }
 
+
   fetchRestaurants() {
     
     if(this.state.isResultsFound === false) {
@@ -65,6 +68,8 @@ class App extends React.Component {
         keyword = "&keyword=";
       }
 
+      this.setState({isLoading: true});
+
       let fetchUrl = `http://localhost:3000/api/get-places?lat=${this.state.submitLocationLat}&long=${this.state.submitLocationLng}${keyword}${this.state.submitKeyword}`;
       
       fetch(fetchUrl)
@@ -74,7 +79,8 @@ class App extends React.Component {
         this.setState({
           data:data.results,
           restaurantsShown:true,
-          error: ''
+          error: '',
+          isLoading: false
         });
       });
     }
@@ -114,6 +120,29 @@ class App extends React.Component {
         <div>
           <Search receiver={this.saveInputQueries} />
             {error}
+
+
+          {/*SPINNER SECTION*/}
+          <section className={this.state.isLoading ? 'spinner' : 'hidden'}>
+            <div className="lds-css ng-scope">
+              <div className="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </section>
+          {/*SPINNER SECTION END*/}
+
           <section 
               className={this.state.restaurantsShown ? 'restaurants' : 'hidden'}>
             <h2 className='restaurants-list-header'>
